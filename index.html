@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mintora — Track Cute. Spend Smart.</title>
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="orbs"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="orb o4"></div></div>
+
+<!-- LOGIN -->
+<div class="page active" id="page-login">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="brand">
+        <div class="brand-icon"><img src="assets/logo.png" class="mintora-logo-img" alt="Mintora"></div>
+        <h1>Mintora</h1><p>track cute. spend smart. ✨</p>
+      </div>
+      <div id="li-err" class="error-box">Those credentials don't match 🌸</div>
+      <div class="field"><label>Email</label><input type="email" id="li-email" placeholder="you@email.com" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <div class="field"><label>Password</label><input type="password" id="li-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <button class="btn btn-grad" onclick="doLogin()">Sign In ✨</button>
+      <div class="divider">or</div>
+      <button class="btn btn-outline" onclick="doDemo()">Try Demo — no account needed 🎯</button>
+      <div class="link-row">New here? <a onclick="goTo('page-signup')">Create an account →</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- SIGNUP -->
+<div class="page" id="page-signup">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="brand">
+        <div class="brand-icon"><img src="assets/logo.png" class="mintora-logo-img" alt="Mintora"></div>
+        <h1>Join Mintora</h1><p>start your financial glow-up 💅</p>
+      </div>
+      <div id="su-err" class="error-box">That email's already taken! 💫</div>
+      <div class="field"><label>Your Name</label><input type="text" id="su-name" placeholder="e.g. Luna"></div>
+      <div class="field"><label>Email</label><input type="email" id="su-email" placeholder="you@email.com"></div>
+      <div class="field"><label>Password</label><input type="password" id="su-pass" placeholder="min 6 characters" onkeydown="if(event.key==='Enter')doSignup()"></div>
+      <button class="btn btn-grad" onclick="doSignup()">Create my account 🌿</button>
+      <div class="link-row">Already have an account? <a onclick="goTo('page-login')">Sign in →</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ONBOARDING -->
+<div class="page" id="page-onboard">
+  <div class="auth-wrap">
+    <div class="auth-card" style="max-width:460px;">
+      <div style="text-align:center;margin-bottom:16px;"><div class="brand-icon" style="margin:0 auto 10px;"><img src="assets/logo.png" class="mintora-logo-img" alt="Mintora"></div></div>
+      <div class="ob-badge">Quick Setup ✨</div>
+      <div class="ob-title">Let's set your vibe 🌿</div>
+      <div class="ob-sub">Tell us your monthly numbers to personalise your dashboard.</div>
+      <div class="field"><label>Monthly Income</label><div class="pfx"><span>₹</span><input type="number" id="ob-income" placeholder="50000"></div></div>
+      <div class="field"><label>Monthly Savings Goal</label><div class="pfx"><span>₹</span><input type="number" id="ob-goal" placeholder="10000"></div></div>
+      <div style="padding:12px 15px;background:rgba(123,191,154,.1);border:1px solid rgba(123,191,154,.25);border-radius:var(--r-sm);font-size:.8rem;color:var(--t2);margin-bottom:22px;line-height:1.55;">💡 You can update these anytime in <strong>Settings</strong></div>
+      <button class="btn btn-grad" onclick="doOnboard()">Take me to my dashboard 🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="page" id="page-dashboard">
+  <div class="dash-shell">
+    <nav class="sidenav">
+      <div class="sn-logo">
+        <div class="lsq"><img src="assets/logo.png" class="mintora-logo-img" alt="Mintora"></div>
+        <span>Mintora</span>
+      </div>
+      <div class="sn-sec">Menu</div>
+      <button class="nav-item active" id="nav-overview" onclick="showTab('overview')"><span class="ni">🏠</span><span>Overview</span></button>
+      <button class="nav-item" id="nav-add" onclick="showTab('add')"><span class="ni">➕</span><span>Add Expense</span></button>
+      <button class="nav-item" id="nav-pins" onclick="showTab('pins')"><span class="ni">📌</span><span>My Pins</span></button>
+      <button class="nav-item" id="nav-insights" onclick="showTab('insights')"><span class="ni">✨</span><span>AI Insights</span></button>
+      <button class="nav-item" id="nav-goals" onclick="showTab('goals')"><span class="ni">🎯</span><span>Goals</span></button>
+      <button class="nav-item" id="nav-budget" onclick="showTab('budget')"><span class="ni">📊</span><span>Budget</span></button>
+      <div class="sn-sec" style="margin-top:12px;">Account</div>
+      <button class="nav-item" id="nav-settings" onclick="showTab('settings')"><span class="ni">⚙️</span><span>Settings</span></button>
+      <div class="sn-bot">
+        <div class="upill"><div class="uav">🌸</div><div class="uinfo"><div class="uname" id="sn-uname">Luna</div><div class="usub">Free plan</div></div></div>
+        <button class="btn-lo" onclick="doLogout()">Sign out</button>
+      </div>
+    </nav>
+
+    <main class="main-content" id="main">
+
+      <!-- OVERVIEW -->
+      <div class="sub-page active" id="tab-overview">
+        <div class="ph"><h2>Good vibes, <span id="oh-name">Luna</span> 👋</h2><p>Here's your financial snapshot for this month</p></div>
+        <div class="ov-grid">
+          <div class="ov-card"><div class="ov-ico mint">💰</div><div class="ov-lbl">Monthly Income</div><div class="ov-val green" id="ov-income">₹0</div><div class="ov-hint">Your base budget</div></div>
+          <div class="ov-card"><div class="ov-ico blush">🛍️</div><div class="ov-lbl">Total Spent</div><div class="ov-val red" id="ov-spent">₹0</div><div class="pb"><div class="pb-fill pb-blush" id="bar-spent" style="width:0%"></div></div><div class="ov-hint" id="ov-spent-pct">0% of income</div></div>
+          <div class="ov-card"><div class="ov-ico lav">💎</div><div class="ov-lbl">Remaining</div><div class="ov-val" id="ov-rem">₹0</div><div class="ov-hint">Still available</div></div>
+          <div class="ov-card"><div class="ov-ico mint">🎯</div><div class="ov-lbl">Savings Progress</div><div class="ov-val green" id="ov-sav-pct">0%</div><div class="pb"><div class="pb-fill pb-mint" id="bar-sav" style="width:0%"></div></div><div class="ov-hint" id="ov-sav-goal">Goal: ₹0</div></div>
+        </div>
+        <div class="two-col">
+          <div class="card">
+            <div class="ct">Recent Activity <button class="see-all" onclick="showTab('pins')">See all →</button></div>
+            <div id="recent-list"></div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="ct">Spending Breakdown</div>
+              <div id="bk-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADD EXPENSE -->
+      <div class="sub-page" id="tab-add">
+        <div class="ph"><h2>Add Expense Pin 📌</h2><p>Log a new spend and tag it with a mood</p></div>
+        <div class="ae-wrap">
+          <div id="quick-chips" style="margin-bottom:14px;"></div>
+          <div class="ae-card">
+            <div class="frow2">
+              <div class="fg"><label>Expense Name</label><input type="text" id="f-name" placeholder="e.g. Boba Tea, Rent…"></div>
+              <div class="fg"><label>Amount (₹)</label><input type="number" id="f-amt" placeholder="0.00"></div>
+            </div>
+            <div class="frow2">
+              <div class="fg"><label>Category</label>
+                <select id="f-cat"><option>🍵 Food & Drink</option><option>🛒 Groceries</option><option>👗 Fashion</option><option>💄 Beauty</option><option>🏠 Housing</option><option>🚌 Transport</option><option>📱 Subscriptions</option><option>🎮 Entertainment</option><option>📚 Education</option><option>🏥 Health</option><option>✈️ Travel</option><option>🎁 Gifts</option><option>⚡ Utilities</option><option>📦 Other</option></select>
+              </div>
+              <div class="fg"><label>Date</label><input type="date" id="f-date"></div>
+            </div>
+            <div class="fg"><label>Note (optional)</label><textarea id="f-note" rows="2" placeholder="e.g. date night, splurge alert 👀..."></textarea></div>
+            <div class="fg"><label>Mood Tag</label>
+              <div class="mood-pills">
+                <button class="mp necessary active" onclick="pickMood('necessary')"><span class="mpe">✅</span>Necessary</button>
+                <button class="mp impulse" onclick="pickMood('impulse')"><span class="mpe">⚡</span>Impulse</button>
+                <button class="mp luxury" onclick="pickMood('luxury')"><span class="mpe">💎</span>Luxury</button>
+              </div>
+            </div>
+            <button class="btn-pin" onclick="addExpense()">📌 Pin this Expense</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MY PINS -->
+      <div class="sub-page" id="tab-pins">
+        <div class="ph"><h2>My Expense Pins 📌</h2><p>All your tracked expenses in one beautiful board</p></div>
+        <div class="ptool">
+          <div class="fpills">
+            <button class="fp active" onclick="filterPins(this,'all')">All</button>
+            <button class="fp" onclick="filterPins(this,'necessary')">✅ Necessary</button>
+            <button class="fp" onclick="filterPins(this,'impulse')">⚡ Impulse</button>
+            <button class="fp" onclick="filterPins(this,'luxury')">💎 Luxury</button>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <select class="sort-sel" id="sort-sel" onchange="renderPins()"><option value="date-desc">Newest First</option><option value="date-asc">Oldest First</option><option value="amt-desc">Highest Amount</option><option value="amt-asc">Lowest Amount</option></select>
+            <div class="pcbadge" id="pc-badge">0 pins</div>
+          </div>
+        </div>
+        <div id="pins-board"></div>
+      </div>
+
+      <!-- AI INSIGHTS -->
+            <div class="sub-page" id="tab-insights">
+        <div class="ph" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div><h2>AI Insights ✨</h2><p>Your personal Mintora money coach — powered by Claude AI</p></div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+            <div style="display:flex;gap:6px;">
+              <button class="ip-pill active" onclick="setInsightPeriod('month',this)">Month</button>
+              <button class="ip-pill" onclick="setInsightPeriod('week',this)">Week</button>
+              <button class="ip-pill" onclick="setInsightPeriod('all',this)">All Time</button>
+            </div>
+            <button class="ai-refresh-btn" id="ai-refresh-btn" onclick="runAIAnalysis()">
+              <span id="ai-btn-icon">✨</span><span id="ai-btn-text">Ask Claude</span>
+            </button>
+          </div>
+        </div>
+        <div class="ins-hero" id="ins-hero">
+          <div class="ins-hero-left">
+            <h2 id="hero-title">Analysing your spending…</h2>
+            <p id="hero-desc">Add expenses to unlock your full financial health report.</p>
+            <div id="hero-badges" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;"></div>
+          </div>
+          <div class="ins-score-ring">
+            <svg width="90" height="90" viewBox="0 0 90 90">
+              <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(180,170,220,.15)" stroke-width="8"/>
+              <circle cx="45" cy="45" r="38" fill="none" stroke="url(#sg)" stroke-width="8" stroke-linecap="round" stroke-dasharray="239" id="score-ring" stroke-dashoffset="239"/>
+              <defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7bbf9a"/><stop offset="100%" stop-color="#9b8dda"/></linearGradient></defs>
+            </svg>
+            <div style="text-align:center;z-index:1;"><div class="score-num" id="score-num">—</div><div class="score-lbl">Health</div></div>
+          </div>
+        </div>
+        <div class="ins-stat-row" id="ins-stat-row"></div>
+        <div class="ai-chat-panel" id="ai-chat-panel" style="display:none;">
+          <div class="ai-chat-header">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="ai-avatar">🤖</div>
+              <div><div style="font-weight:600;font-size:.9rem;color:var(--t1);">Claude AI Coach</div><div style="font-size:.72rem;color:var(--t3);">Powered by Anthropic</div></div>
+            </div>
+            <button onclick="closeAIChat()" style="background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--t3);padding:4px;">✕</button>
+          </div>
+          <div id="ai-quick-prompts" style="display:flex;gap:7px;flex-wrap:wrap;padding:12px 16px 0;"></div>
+          <div class="ai-chat-body" id="ai-chat-body">
+            <div class="ai-thinking" id="ai-thinking" style="display:none;"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div></div>
+          </div>
+          <div class="ai-chat-footer">
+            <input type="text" id="ai-chat-input" class="ai-chat-input" placeholder="Ask me anything about your money…" onkeydown="if(event.key==='Enter')sendAIMessage()">
+            <button class="ai-send-btn" onclick="sendAIMessage()">→</button>
+          </div>
+        </div>
+        <div class="ig" id="ig"></div>
+        <div class="weekly-chart" id="weekly-chart" style="display:none;">
+          <div class="ct" style="margin-bottom:0;">Daily Spend — 7 Days <span id="wc-total" style="font-family:'DM Sans',system-ui,sans-serif;font-size:.8rem;color:var(--t3);font-weight:400;"></span></div>
+          <div class="wc-bars" id="wc-bars"></div>
+        </div>
+        <div class="trend-panel" id="trend-panel" style="display:none;">
+          <div class="ct">📈 Monthly Comparison</div>
+          <div id="trend-content"></div>
+        </div>
+        <div class="spending-forecast" id="sf-panel" style="display:none;">
+          <div class="sf-title">📊 Month-End Forecast</div>
+          <div id="sf-content"></div>
+        </div>
+        <div class="smart-recs" id="smart-recs" style="display:none;">
+          <div class="ct">🎯 Smart Recommendations</div>
+          <div id="smart-recs-content"></div>
+        </div>
+        <div class="tip-strip" id="tip-strip" style="display:none;">
+          <div class="te">💡</div>
+          <div style="flex:1;"><h4>Money Tip</h4><p id="tip-text"></p></div>
+          <button onclick="nextTip()" style="flex-shrink:0;background:none;border:1.5px solid rgba(155,141,218,.3);border-radius:var(--r-xs);padding:6px 12px;font-size:.75rem;font-weight:600;color:var(--lav);cursor:pointer;font-family:'DM Sans',sans-serif;">Next →</button>
+        </div>
+      </div>
+
+<!-- GOALS -->
+      <div class="sub-page" id="tab-goals">
+        <div class="ph"><h2>My Goals 🎯</h2><p>Set savings targets and track your progress</p></div>
+        <div class="goals-grid" id="goals-grid"></div>
+        <button class="add-goal-btn" onclick="openGoalModal()">＋ Add New Goal</button>
+      </div>
+
+      <!-- BUDGET PLANNER -->
+      <div class="sub-page" id="tab-budget">
+        <div class="ph"><h2>Budget Planner 📊</h2><p>See how your spending maps to your budget</p></div>
+        <div class="budget-grid">
+          <div class="card">
+            <div class="ct">Spending by Category</div>
+            <div id="budget-cats"></div>
+          </div>
+          <div>
+            <div class="card" style="margin-bottom:16px;">
+              <div class="ct">This Month Summary</div>
+              <div id="budget-summary"></div>
+            </div>
+            <div class="card">
+              <div class="ct">Mood Distribution</div>
+              <div class="mood-wheel" id="mood-wheel"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="sub-page" id="tab-settings">
+        <div class="ph"><h2>Settings ⚙️</h2><p>Manage your Mintora preferences</p></div>
+        <div class="sw">
+          <div class="sc">
+            <h3>💰 Budget Settings</h3>
+            <div class="fg"><label>Monthly Income</label><div style="position:relative;"><span style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--t3);font-size:.9rem;">₹</span><input class="si" type="number" id="s-income" placeholder="50000"></div></div>
+            <div class="fg" style="margin-bottom:18px;"><label>Savings Goal</label><div style="position:relative;"><span style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--t3);font-size:.9rem;">₹</span><input class="si" type="number" id="s-goal" placeholder="10000"></div></div>
+            <button class="btn btn-grad" style="width:auto;padding:11px 26px;font-size:.88rem;" onclick="saveSettings()">Save Changes ✓</button>
+          </div>
+          <div class="sc">
+            <h3>🔔 Notifications</h3>
+            <div class="toggle-row"><div><div class="toggle-label">Budget Alerts</div><div class="toggle-desc">Notify when you hit 80% of income</div></div><label class="toggle"><input type="checkbox" id="t-alerts" checked><span class="toggle-slider"></span></label></div>
+            <div class="toggle-row"><div><div class="toggle-label">Impulse Warnings</div><div class="toggle-desc">Alert on high impulse spending weeks</div></div><label class="toggle"><input type="checkbox" id="t-impulse" checked><span class="toggle-slider"></span></label></div>
+            <div class="toggle-row"><div><div class="toggle-label">Daily Tips</div><div class="toggle-desc">Show money tips in AI Insights</div></div><label class="toggle"><input type="checkbox" id="t-tips" checked><span class="toggle-slider"></span></label></div>
+          </div>
+          <div class="sc">
+            <h3>🗑️ Data Management</h3>
+            <p style="font-size:.82rem;color:var(--t2);margin-bottom:14px;line-height:1.6;">Clear all your expense pins. Your income and savings goal will be kept.</p>
+            <button class="dbtn" onclick="clearAll()">Clear all expense pins</button>
+          </div>
+          <div class="sc">
+            <h3>👤 Account</h3>
+            <p style="font-size:.82rem;color:var(--t2);margin-bottom:14px;line-height:1.6;">Signed in as <strong id="s-email" style="color:var(--t1);"></strong></p>
+            <button class="dbtn" onclick="doLogout()">Sign out of Mintora</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- GOAL MODAL -->
+<div class="modal-overlay" id="goal-modal">
+  <div class="modal">
+    <h3>🎯 Add a New Goal</h3>
+    <div class="fg"><label>Goal Name</label><input type="text" id="gm-name" placeholder="e.g. iPhone 16, Goa Trip, Emergency Fund"></div>
+    <div class="frow2">
+      <div class="fg"><label>Target Amount (₹)</label><input type="number" id="gm-target" placeholder="20000"></div>
+      <div class="fg"><label>Already Saved (₹)</label><input type="number" id="gm-saved" placeholder="0"></div>
+    </div>
+    <div class="fg"><label>Goal Emoji</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;" id="goal-emojis">
+        <span onclick="pickGoalEmoji(this)" data-e="📱" style="font-size:1.4rem;cursor:pointer;padding:6px;border-radius:8px;border:1.5px solid rgba(180,170,220,.2);background:rgba(255,255,255,.5);">📱</span>
+        <span onclick="pickGoalEmoji(this)" data-e="✈️" style="font-size:1.4rem;cursor:pointer;padding:6px;border-radius:8px;border:1.5px solid rgba(180,170,220,.2);background:rgba(255,255,255,.5);">✈️</span>
+        <span onclick="pickGoalEmoji(this)" data-e="🏖️" style="font-size:1.4rem;cursor:pointer;padding:6px;border-radius:8px;border:1.5px solid rgba(180,170,220,.2);background:rgba(255,255,255,.5);">🏖️</span>
+        <span onclick="pickGoalEmoji(this)" data-e="💻" style="font-size:1.4rem;cursor:pointer;padding:6px;border-radius:8px;border:1.5px solid rgba(180,170,220,.2);background:rgba(255,255,255,.5);">💻</span>
+        <span onclick="pickGoalEmoji(this)" data-e="👗" style="font-size:1.4rem;cursor:pointer;padding:6px;border-radius:8px;border:1.5px solid rgba(180,170,220,.2);background:rgba(255,255,255,.5);">👗</span>
+        <span onclick="pickGoalEmoji(this)" data-e="🚗" style="font-size:1.4rem;cursor:pointer;padding:6px;border-radius:8px;border:1.5px solid rgba(180,170,220,.2);background:rgba(255,255,255,.5);">🚗</span>
+        <span onclick="pickGoalEmoji(this)" data-e="🏠" style="font-size:1.4rem;cursor:pointer;padding:6px;border-radius:8px;border:1.5px solid rgba(180,170,220,.2);background:rgba(255,255,255,.5);">🏠</span>
+        <span onclick="pickGoalEmoji(this)" data-e="💍" style="font-size:1.4rem;cursor:pointer;padding:6px;border-radius:8px;border:1.5px solid rgba(180,170,220,.2);background:rgba(255,255,255,.5);">💍</span>
+        <span onclick="pickGoalEmoji(this)" data-e="🎓" style="font-size:1.4rem;cursor:pointer;padding:6px;border-radius:8px;border:1.5px solid rgba(180,170,220,.2);background:rgba(255,255,255,.5);">🎓</span>
+        <span onclick="pickGoalEmoji(this)" data-e="💰" style="font-size:1.4rem;cursor:pointer;padding:6px;border-radius:8px;border:1.5px solid rgba(180,170,220,.2);background:rgba(255,255,255,.5);">💰</span>
+      </div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeGoalModal()">Cancel</button>
+      <button class="btn btn-grad" style="flex:2;" onclick="saveGoal()">Add Goal 🎯</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+  <!-- JS — load order matters! -->
+  <script src="js/utils.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/expenses.js"></script>
+  <script src="js/goals.js"></script>
+  <script src="js/budget.js"></script>
+  <script src="js/insights.js"></script>
+  <script src="js/dashboard.js"></script>
+
+</body>
+</html>
