@@ -38,7 +38,7 @@ async function runAIAnalysis(){
   await callClaude(sys,aiChatHistory);
   btn.classList.remove('loading');
   document.getElementById('ai-btn-icon').textContent='✨';
-  document.getElementById('ai-btn-text').textContent='Ask Claude';
+  document.getElementById('ai-btn-text').textContent='Ask AI Coach';
 }
 
 function openAIChat(){
